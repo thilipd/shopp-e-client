@@ -2,6 +2,7 @@
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
+axios.defaults.crossorigin = true;
 
 const instance = axios.create({
     baseURL: 'https://shopp-e-server.herokuapp.com/',
