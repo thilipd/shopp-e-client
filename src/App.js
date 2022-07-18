@@ -24,6 +24,8 @@ import EditSub from './pages/admin/sub/EditSub';
 import CreateProduct from './pages/admin/product/CreateProduct';
 import EditProduct from './pages/admin/product/EditProduct';
 import Product from './pages/user/Product';
+import ProductsByCatagory from './pages/admin/catagory/ProductsByCatagory';
+import ProductsBySub from './pages/admin/sub/ProductsBySub';
 
 function App() {
 
@@ -95,7 +97,8 @@ function App() {
           <Route path='/admin/sub/edits/:id/:slug' element={isAdmin ? <EditSub /> : <>{notFound()}</>} />
           <Route path='/admin/product' element={isAdmin ? <CreateProduct /> : <>{notFound()}</>} />
           <Route path='/admin/product/edits/:slug' element={isAdmin ? <EditProduct /> : <>{notFound()}</>} />
-
+          <Route path='/admin/catatgory/:slug' element={isAdmin ? <ProductsByCatagory /> : <>{notFound()}</>} />
+          <Route path='/admin/sub/:slug' element={isAdmin ? <ProductsBySub /> : <>{notFound()}</>} />
 
           {/* user Routes */}
           <Route path='/user/dashboard' element={isLogged ? <UserDashboard /> : <>{notFound()}</>} />

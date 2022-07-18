@@ -7,11 +7,26 @@ body{
 h2,h4{
   color: #1976d2;
 }
+
 .link{
   color: #fff;
   text-decoration: none;
 }
 
+.linkMob{
+  text-decoration: none;
+  text-transform: capitalize;
+}
+.linkMob:hover{
+  color:#0320c0;
+  text-decoration:underline;
+}
+
+a{
+  text-decoration: none;
+}
+
+.singleProductContainer,
 .homeconatiner,
 .proContainer,
 .productcontainer,
@@ -28,6 +43,16 @@ h2,h4{
   min-height: 90vh;
   width: 100%;
   padding: 20px;
+  gap:10px
+}
+
+
+.singleProductContainer{
+  align-items: flex-start;
+  margin-top: 4vh;
+}
+.singleImgContainer{
+ width: 54%;
 }
 
 .homeconatiner,
@@ -375,4 +400,93 @@ input[type="file"] {
   align-items: center;
   justify-content: center;
   color: rgb(255, 255, 255);
+}
+
+.homeSubHead{
+  width: 100vw;
+  background-color: #c2c2c2;
+  display: flex;
+  height: 8vh;
+  margin: 15px 0;
+  color:rgb(171, 0, 0);
+  padding: 20px;
+  border-radius: 5px;
+  
+}
+
+.paginate{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.singleProdInfoContainer{
+  border: 1px solid #1976d2;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.singleProdInfoContainer table{
+
+  border-radius: 10px;
+  min-width: 500px;
+  min-height: 67vh;
+  overflow: hidden;
+}
+
+
+.singleProdInfoContainer table th{
+  padding-left: 10px;
+  color: #1976d2;
+}
+
+.singleProdInfoContainer table td{
+  color: rgb(77, 77, 77);
+}
+
+.singleProdInfoContainer table tr:nth-child(odd){
+  background: #dae1e6;
+  
+}
+
+.singleProdInfoContainer table tr:nth-child(even){
+  background: #f2f9ff;
+}
+.singleProdInfoContainer table tr:first-child th{
+  font-size: 50px;
+  background-color: #1976d2 !important;
+  color: #fff !important;
+  text-align: center;
+  border-radius: 5px;
+}
+.singleProdInfoContainer table tr:last-child{
+  background-color:#fff;
+  height: 80px;
+}
+.singleProdInfoContainer table tr:last-child th button{
+  width: 90%;
+}
+
+.singleProdInfoContainer table tr:last-child th:first-child button{
+  color: rgb(16, 99, 42);
+  border: 1px solid rgb(16, 99, 42);
+ 
+}
+
+.singleProdInfoContainer table tr:last-child th:last-child button{
+  color: rgb(180, 1, 130);
+  border: 1px solid rgb(180, 1, 130);
+ 
+}
+.singleImgContainer .slide img{
+  height: 450px;
+  object-fit: cover;
+}
+.singleImgContainer .slide {
+  width: 80%;
+}
+
+.carousel {
+  width: 80% !important;
+  border-radius: 5px;
 }

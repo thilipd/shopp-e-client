@@ -1,11 +1,11 @@
 
 import axios from 'axios';
 
-axios.defaults.withCredentials = true;
-axios.defaults.crossorigin = true;
+// axios.defaults.withCredentials = true;
+// axios.defaults.crossorigin = false;
 
 const instance = axios.create({
-    baseURL: 'https://shopp-e-server.herokuapp.com/',
+    baseURL: 'http://localhost:8000',
     responseType: 'json',
     timeout: 10000,
 

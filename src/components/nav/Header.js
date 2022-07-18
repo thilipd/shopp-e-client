@@ -22,11 +22,11 @@ import { dispatchLogout, dispatchLogin } from '../../redux/actions/authActions';
 import { useDispatch } from 'react-redux'
 
 
-const pagesAdmin = ['Home', 'dashboard', 'product', 'edits', 'catagory', 'subcatagory'];
+const pagesAdmin = ['Home', 'dashboard', 'product', 'catagory', 'subcatagory'];
 const pagesUser = ['Home', 'wishlist', 'history'];
 const authPages = ['Login', 'Register']
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-const linkAdmin = ['/', '/admin/dashboard', '/admin/product', '/admin/edits', '/admin/catagory', '/admin/subcatagory'];
+const linkAdmin = ['/', '/admin/dashboard', '/admin/product', '/admin/catagory', '/admin/subcatagory'];
 const linkUser = ['/', '/user/product', '/user/wishlist', '/user/history'];
 const authLink = ['login', 'register']
 
@@ -52,6 +52,8 @@ const Header = () => {
         setAnchorElNav(event.currentTarget);
     };
     const handleOpenUserMenu = (event) => {
+
+        console.log(event.currentTarget)
         setAnchorElUser(event.currentTarget);
     };
 
@@ -178,12 +180,15 @@ const Header = () => {
                                 open={Boolean(anchorElNav)}
                                 onClose={handleCloseNavMenu}
                                 sx={{
+                                    color: '#000',
                                     display: { xs: 'block', md: 'none' },
                                 }}
                             >
-                                {pages.map((page) => (
-                                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                        <Typography textAlign="center">{page}</Typography>
+                                {pages.map((page, i) => (
+                                    <MenuItem key={page} onClick={(e) => handleCloseNavMenu(e)}>
+                                        <Typography textAlign="center">
+                                            <Link color={'primary'} className='linkMob' to={`${link[i]}`}>{page}</Link>
+                                        </Typography>
                                     </MenuItem>
                                 ))}
                             </Menu>

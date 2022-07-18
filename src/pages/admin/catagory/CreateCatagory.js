@@ -114,9 +114,9 @@ const CreateCatagory = () => {
                 <div className="cataListContainer">
                     <br /><br /><br /><br /><br /><br />
                     <List className="catalist">
-                        {catagories.map((cata) => {
+                        {catagories.map((cata, i) => {
                             return (<>
-                                <ListItem className={'list'} key={cata._id} >
+                                <ListItem className={'list'} key={i + 1} >
 
                                     <ListItemText primary={cata.name} />
 

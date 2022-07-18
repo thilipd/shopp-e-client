@@ -73,3 +73,31 @@ export const updateProduct = async (slug, product, token) => {
     }
 
 }
+
+export const listProduct = async (sort, order, page) => {
+    try {
+        const product = await axios.post(`/products/sortProduct`, {
+            sort,
+            order,
+            page
+        });
+
+        return product
+    } catch (error) {
+        console.log(error)
+
+        return error
+    }
+}
+
+export const getProductCount = async () => {
+    try {
+        const count = await axios.get(`products/count`)
+        return count
+
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+
+}
