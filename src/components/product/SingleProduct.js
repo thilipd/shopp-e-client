@@ -47,7 +47,7 @@ const SingleProduct = ({ product }) => {
     };
 
 
-
+    console.log(product)
 
 
     return (

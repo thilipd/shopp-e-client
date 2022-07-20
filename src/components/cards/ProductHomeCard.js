@@ -20,8 +20,36 @@ const ProductHomeCard = ({ product, handledelete }) => {
 
     const { title, description, images, slug } = product;
 
+    let [cart, setCart] = useState([])
 
     const navigate = useNavigate();
+
+
+    const handleCart = () => {
+
+
+        if (cart.length === 0) {
+            setCart(cart.push({
+                ...product,
+                count: 1
+            }));
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        if (cart.length !== 0) {
+            setCart([...cart, { ...product, count: 1 }]);
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+
+
+
+
+        console.log(typeof (cart), cart)
+
+
+
+    }
 
 
     return (
@@ -74,7 +102,7 @@ const ProductHomeCard = ({ product, handledelete }) => {
                 </CardContent>
                 <CardActions className='cardActionHome'>
                     <Button variant='soft' onClick={() => navigate(`/product/${slug}`)}><VisibilityIcon />View</Button>
-                    <Button variant='soft' ><AddShoppingCartIcon />Add to cart</Button>
+                    <Button variant='soft' onClick={() => handleCart()}><AddShoppingCartIcon />Add to cart</Button>
                 </CardActions>
             </Card>
 

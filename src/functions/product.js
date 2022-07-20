@@ -58,8 +58,6 @@ export const deleteProduct = async (slug) => {
 
 export const updateProduct = async (slug, product, token) => {
 
-
-    console.log(slug, product)
     try {
         const create = await axios.put(`/products/product/${slug}`, product, {
             headers: { Authorization: token }
@@ -101,3 +99,4 @@ export const getProductCount = async () => {
     }
 
 }
+

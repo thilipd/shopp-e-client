@@ -6,6 +6,8 @@ import Typewriter from "typewriter-effect";
 import LoadingCard from '../components/cards/LoadingCard';
 import Newarrivals from '../components/home/Newarrivals';
 import BestSeller from '../components/home/BestSellers';
+import ListCatagory from '../components/product/ListCatagory';
+import ListSubs from '../components/product/ListSub';
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -14,7 +16,9 @@ const Home = () => {
         cardLoad: false
     });
 
-    const { pageLoad, cardLoad } = loading
+    const { pageLoad, cardLoad } = loading;
+
+    if (!window.localStorage.getItem('cart')) window.localStorage.setItem('cart', '');
 
     return (
 
@@ -56,6 +60,20 @@ const Home = () => {
                     </div>
                     <div>
                         <BestSeller />
+                    </div>
+
+                    <div>
+                        <div>
+                            <h3 className='homeSubHead'>Catagories</h3>
+                            <ListCatagory />
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                            <h3 className='homeSubHead'>Sub Catagories</h3>
+                            <ListSubs />
+                        </div>
                     </div>
                 </>}
 

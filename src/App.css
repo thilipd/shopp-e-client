@@ -2,6 +2,9 @@
 body{
   color:#555;
   background-color: rgba(219, 219, 219, 0.296);
+  width: 98vw;
+  overflow: auto;
+  padding-left: 20px;
 }
 
 h2,h4{
@@ -26,6 +29,7 @@ a{
   text-decoration: none;
 }
 
+.productCataContainer,
 .singleProductContainer,
 .homeconatiner,
 .proContainer,
@@ -42,7 +46,7 @@ a{
   align-items: center;
   min-height: 90vh;
   width: 100%;
-  padding: 20px;
+  padding-top: 20px;
   gap:10px
 }
 
@@ -55,6 +59,7 @@ a{
  width: 54%;
 }
 
+.productCataContainer,
 .homeconatiner,
 .proContainer{
   flex-direction: column;
@@ -390,7 +395,7 @@ input[type="file"] {
 }
 
 .mainHead{
-  width: 98vw;
+  width: 96vw;
   height: 200px;
   font-size: 80px;
   padding-right: 10px;
@@ -403,7 +408,7 @@ input[type="file"] {
 }
 
 .homeSubHead{
-  width: 100vw;
+  width: 96vw;
   background-color: #c2c2c2;
   display: flex;
   height: 8vh;
@@ -489,4 +494,25 @@ input[type="file"] {
 .carousel {
   width: 80% !important;
   border-radius: 5px;
+}
+
+.cataBtn{
+  display: flex;
+  justify-content: space-around;
+  
+}
+
+.homeCataBtn{
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 9px 18px, rgba(110, 110, 110, 0.2) 0px 5px 4px !important;
+  border: none !important;
+}
+.homeCataBtn:hover{
+  border: 1px solid #1976d2 !important;
+}
+
+.productCataCard{
+  display: flex;
+  gap: 10px;
+  flex-wrap:wrap;
+  align-items: flex-start;
 }
