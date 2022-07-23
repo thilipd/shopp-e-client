@@ -22,12 +22,12 @@ import { dispatchLogout, dispatchLogin } from '../../redux/actions/authActions';
 import { useDispatch } from 'react-redux'
 
 
-const pagesAdmin = ['Home', 'dashboard', 'product', 'catagory', 'subcatagory'];
-const pagesUser = ['Home', 'wishlist', 'history'];
+const pagesAdmin = ['Home', 'dashboard', 'product', 'catagory', 'subcatagory', 'cart'];
+const pagesUser = ['Home', 'wishlist', 'cart'];
 const authPages = ['Login', 'Register']
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-const linkAdmin = ['/', '/admin/dashboard', '/admin/product', '/admin/catagory', '/admin/subcatagory'];
-const linkUser = ['/', '/user/product', '/user/wishlist', '/user/history'];
+const linkAdmin = ['/', '/admin/dashboard', '/admin/product', '/admin/catagory', '/admin/subcatagory', 'cart'];
+const linkUser = ['/', '/user/wishlist', 'cart'];
 const authLink = ['login', 'register']
 
 const Header = () => {

@@ -14,6 +14,7 @@ import Reset from './pages/auth/Reset';
 import { useDispatch, useSelector } from 'react-redux'
 import Profile from './pages/profile/Profile';
 import { fetchUser, dispatchUser, dispatchLogin } from './redux/actions/authActions';
+import { dispatchCart } from './redux/actions/cartAction';
 import Editusers from './pages/profile/Editusers';
 import AdminDashboard from './pages/dashboard/AdminDashboard';
 import UserDashboard from './pages/dashboard/UserDashboard';
@@ -26,6 +27,7 @@ import EditProduct from './pages/admin/product/EditProduct';
 import Product from './pages/user/Product';
 import ProductsByCatagory from './pages/admin/catagory/ProductsByCatagory';
 import ProductsBySub from './pages/admin/sub/ProductsBySub';
+import Cart from './pages/Cart';
 
 function App() {
 
@@ -59,6 +61,7 @@ function App() {
     if (token) {
       const getUser = () => {
 
+
         dispatch(dispatchLogin());
         fetchUser(token).then(res => {
           dispatch(dispatchUser(res.data))
@@ -79,8 +82,12 @@ function App() {
         <Header />
         <ToastContainer />
         <Routes>
-          {/* Auth Routes */}
+
           <Route path='/' element={<Home />} />
+          <Route path='/cart' element={<Cart />} />
+
+
+          {/* Auth Routes */}
           <Route path='/login' element={isLogged ? <>{notFound()}</> : <Login />} />
           <Route path='/register' element={isLogged ? <>{notFound()}</> : <Register />} />
           <Route path='/user/activation/:activation_token' element={<Activation />} />
@@ -103,6 +110,7 @@ function App() {
           {/* user Routes */}
           <Route path='/user/dashboard' element={isLogged ? <UserDashboard /> : <>{notFound()}</>} />
           <Route path='/product/:slug' element={<Product />} />
+
 
 
         </Routes>

@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import HashLoader from 'react-spinners/HashLoader';
-import ProductHomeCard from '../components/cards/ProductHomeCard';
-import { listProductByCount } from '../functions/product';
 import Typewriter from "typewriter-effect";
-import LoadingCard from '../components/cards/LoadingCard';
 import Newarrivals from '../components/home/Newarrivals';
 import BestSeller from '../components/home/BestSellers';
 import ListCatagory from '../components/product/ListCatagory';
 import ListSubs from '../components/product/ListSub';
 
+
 const Home = () => {
-    const [products, setProducts] = useState([]);
+
+
+
+    let [cart, setCart] = useState([])
     const [loading, setLoading] = useState({
         pageLoad: false,
         cardLoad: false
@@ -19,6 +20,10 @@ const Home = () => {
     const { pageLoad, cardLoad } = loading;
 
     if (!window.localStorage.getItem('cart')) window.localStorage.setItem('cart', '');
+
+
+
+
 
     return (
 
@@ -56,10 +61,10 @@ const Home = () => {
                     </div>
 
                     <div>
-                        <Newarrivals />
+                        <Newarrivals cart={cart} setCart={setCart} />
                     </div>
                     <div>
-                        <BestSeller />
+                        <BestSeller cart={cart} setCart={setCart} />
                     </div>
 
                     <div>

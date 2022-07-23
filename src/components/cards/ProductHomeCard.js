@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -9,6 +9,10 @@ import Carousel from 'react-material-ui-carousel'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useNavigate } from 'react-router-dom';
+import _, { isEqual } from 'lodash';
+import { Tooltip } from '@mui/material';
+import { dispatchCart } from '../../redux/actions/cartAction';
+import { useDispatch } from 'react-redux';
 
 
 const dummy = [
@@ -16,41 +20,36 @@ const dummy = [
     'https://res.cloudinary.com/shoppe-ecomm/image/upload/v1657378101/shoppe_products/refurb-2019-imac-27-gallery_i2vvvr.jpg'
 ]
 
-const ProductHomeCard = ({ product, handledelete }) => {
+const ProductHomeCard = ({ product, cart, setCart }) => {
+
+    const dispatch = useDispatch();
 
     const { title, description, images, slug } = product;
 
-    let [cart, setCart] = useState([])
+    const [tooltip, setTooltip] = useState('Click to add')
 
     const navigate = useNavigate();
 
 
     const handleCart = () => {
 
-
-        if (cart.length === 0) {
-            setCart(cart.push({
-                ...product,
-                count: 1
-            }));
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
-
-        if (cart.length !== 0) {
-            setCart([...cart, { ...product, count: 1 }]);
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
-
-
-
-
-
-        console.log(typeof (cart), cart)
-
+        setCart([...cart, {
+            ...product,
+            count: 1
+        }]);
+        setTooltip('Added')
 
 
     }
 
+    useEffect(() => {
+        let unique = _.uniqWith(cart, _.isEqual)
+        localStorage.setItem('cart', JSON.stringify(unique));
+
+
+        dispatch(dispatchCart(unique))
+
+    }, [cart])
 
     return (
         <div>
@@ -101,8 +100,14 @@ const ProductHomeCard = ({ product, handledelete }) => {
                     </Typography>
                 </CardContent>
                 <CardActions className='cardActionHome'>
+
                     <Button variant='soft' onClick={() => navigate(`/product/${slug}`)}><VisibilityIcon />View</Button>
-                    <Button variant='soft' onClick={() => handleCart()}><AddShoppingCartIcon />Add to cart</Button>
+
+                    <Tooltip title={tooltip}>
+
+                        <Button variant='soft' onClick={() => handleCart()}><AddShoppingCartIcon />Add to cart</Button>
+
+                    </Tooltip >
                 </CardActions>
             </Card>
 

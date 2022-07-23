@@ -8,7 +8,7 @@ import LoadingCard from '../cards/LoadingCard';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
-const Newarrivals = () => {
+const Newarrivals = ({ cart, setCart }) => {
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -71,7 +71,7 @@ const Newarrivals = () => {
                     <>
                         {loading ? <LoadingCard /> :
                             <>
-                                <ProductHomeCard product={prod} handledelete={handledelete} />
+                                <ProductHomeCard product={prod} handledelete={handledelete} cart={cart} setCart={setCart} />
 
                             </>}
 
