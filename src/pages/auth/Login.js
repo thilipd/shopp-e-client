@@ -3,7 +3,7 @@ import { Paper } from '@mui/material';
 import axios from '../../axios/axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { dispatchLogin } from '../../redux/actions/authActions';
 
 const Login = () => {
@@ -12,11 +12,17 @@ const Login = () => {
 
     const dispatch = useDispatch();
 
+    const cart = useSelector(state => state.cart);
+
+    console.log(cart.length)
+
     const [user, setUser] = useState({
         email: '',
         password: '',
 
     });
+
+    console.log()
 
     const { email, password } = user;
 
@@ -44,7 +50,12 @@ const Login = () => {
             if (local) {
                 dispatch(dispatchLogin())
                 dispatch({ type: 'GET_TOKEN', payload: JSON.parse(window.localStorage.getItem('accessToken')) })
-                navigate('/')
+
+                cart.length ?
+                    navigate('/cart') : navigate('/');
+
+
+
             }
 
         } catch (error) {

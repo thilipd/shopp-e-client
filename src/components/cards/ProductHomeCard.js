@@ -9,7 +9,7 @@ import Carousel from 'react-material-ui-carousel'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useNavigate } from 'react-router-dom';
-import _, { isEqual } from 'lodash';
+import _ from 'lodash';
 import { Tooltip } from '@mui/material';
 import { dispatchCart } from '../../redux/actions/cartAction';
 import { useDispatch } from 'react-redux';

@@ -5,13 +5,17 @@ import Newarrivals from '../components/home/Newarrivals';
 import BestSeller from '../components/home/BestSellers';
 import ListCatagory from '../components/product/ListCatagory';
 import ListSubs from '../components/product/ListSub';
+import { useSelector } from 'react-redux';
 
 
 const Home = () => {
 
 
 
-    let [cart, setCart] = useState([])
+    const localCart = useSelector(state => state.cart)
+
+    let [cart, setCart] = useState(localCart);
+
     const [loading, setLoading] = useState({
         pageLoad: false,
         cardLoad: false

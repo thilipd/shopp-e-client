@@ -1,29 +1,40 @@
 import React, { useEffect, useState } from 'react'
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import ClipLoader from "react-spinners/ClipLoader";
+import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
 import BasicTabs from '../tabs/SingleProductTab';
+import _ from 'lodash';
+import { Tooltip } from '@mui/material';
+import { dispatchCart } from '../../redux/actions/cartAction';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+
 
 
 const defaultImgURL = ['https://picsum.photos/seed/picsum/200/300', "https://picsum.photos/200/300?random=1", "https://picsum.photos/200/300?random=2"];
 
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-}
+// function TabPanel(props) {
+//     const { children, value, index, ...other } = props;
+// }
 
 const SingleProduct = ({ product }) => {
+
+    const localCart = useSelector(state => state.cart);
+
+    const { slug } = useParams();
+
+    const [cart, setCart] = useState(localCart);
+
+    const [tooltip, setTooltip] = useState('Added');
+
+    const x = localCart.filter((obj) => {
+        return (obj.slug === slug)
+    });
+
+    const dispatch = useDispatch();
 
 
     const { _id,
@@ -40,15 +51,25 @@ const SingleProduct = ({ product }) => {
         title } = product;
 
 
-    const [value, setValue] = React.useState(0);
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
 
 
-    console.log(product)
+    const handleCart = () => {
 
+        setCart([...cart, {
+            ...product,
+            count: 1
+        }]);
+        setTooltip('Added')
+
+
+    }
+
+    useEffect(() => {
+        let unique = _.uniqWith(cart, _.isEqual)
+        localStorage.setItem('cart', JSON.stringify(unique));
+        dispatch(dispatchCart(unique))
+
+    }, [cart])
 
     return (
         <>
@@ -122,7 +143,9 @@ const SingleProduct = ({ product }) => {
                         </tr>
                         <tr>
                             <th>
-                                <Button variant='soft' color='sucess' >  <AddShoppingCartIcon /></Button>
+                                <Tooltip title={tooltip}>
+                                    <Button onClick={() => handleCart()} variant='soft' color='sucess' >  <AddShoppingCartIcon /></Button>
+                                </Tooltip >
                             </th>
                             <th>
                                 <Button variant='soft' color="info"> <FavoriteBorderIcon /></Button>

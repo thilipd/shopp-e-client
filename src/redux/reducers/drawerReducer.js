@@ -1,9 +1,9 @@
 import ACTIONS from "../actions";
 
-let intialState = []
+let intialState = false
 
 
-const cartReducer = (state = intialState, action) => {
+const drawerReducer = (state = intialState, action) => {
     switch (action.type) {
         case ACTIONS.ADD_TO_CART:
             return action.payload;
@@ -12,4 +12,4 @@ const cartReducer = (state = intialState, action) => {
             return state;
     }
 }
-export default cartReducer
+export default drawerReducer;

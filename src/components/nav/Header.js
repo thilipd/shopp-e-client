@@ -19,7 +19,8 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from '../../axios/axios';
 import { dispatchLogout, dispatchLogin } from '../../redux/actions/authActions';
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
+import Badge from '@mui/material/Badge';
 
 
 const pagesAdmin = ['Home', 'dashboard', 'product', 'catagory', 'subcatagory', 'cart'];
@@ -35,6 +36,8 @@ const Header = () => {
     const auth = useSelector(state => state.auth);
 
     const { user, isLogged, isAdmin } = auth;
+
+    const cart = useSelector(state => state.cart);
 
 
 
@@ -125,12 +128,6 @@ const Header = () => {
     }, [])
 
 
-
-
-
-
-
-
     return (
         <>
             <AppBar position="static">
@@ -219,7 +216,20 @@ const Header = () => {
                                     onClick={handleCloseNavMenu}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
-                                    <Link className='link' to={`${link[i]}`}> {page}</Link>
+                                    <Link className='link' to={`${link[i]}`}>
+                                        {(page === 'cart') && (cart.length) ?
+                                            <Badge badgeContent={cart.length}
+                                                anchorOrigin={{
+                                                    vertical: 'bottom',
+                                                    horizontal: 'right',
+                                                }}
+                                                color="error">
+                                                {page}
+                                            </Badge> :
+                                            <>
+                                                {page}
+                                            </>}
+                                    </Link>
                                 </Button>
                             ))}
                         </Box>
@@ -236,7 +246,11 @@ const Header = () => {
                                                 onClick={handleCloseNavMenu}
                                                 sx={{ my: 2, color: 'white', display: 'block' }}
                                             >
-                                                <Link className='link' to={`${authLink[i]}`}> {page}</Link>
+                                                <Link className='link' to={`${authLink[i]}`}> <>
+
+                                                    {page}
+
+                                                </></Link>
                                             </Button>
                                         ))}
                                     </> :
