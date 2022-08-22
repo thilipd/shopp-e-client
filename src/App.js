@@ -57,6 +57,19 @@ function App() {
     )
   }
 
+  const notAllowed = () => {
+    return (
+      <>
+        <div className='notFoundContainer'>
+          <div>
+            <h2>Only admin</h2>
+          </div>
+
+        </div>
+      </>
+    )
+  }
+
 
   useEffect(() => {
     if (token) {
@@ -99,15 +112,15 @@ function App() {
           <Route path='/editUser/:id' element={isAdmin ? <Editusers /> : <>{notFound()}</>} />
 
           {/* Admin Routes */}
-          <Route path='/admin/dashboard' element={isLogged ? <AdminDashboard /> : <>{notFound()}</>} />
+          <Route path='/admin/dashboard' element={isAdmin ? <AdminDashboard /> : <>{notFound()}</>} />
           <Route path='/admin/catagory' element={isAdmin ? <CreateCatagory /> : <>{notFound()}</>} />
-          <Route path='/admin/catagory/edits/:slug' element={isAdmin ? <EditCatagory /> : <>{notFound()}</>} />
-          <Route path='/admin/subcatagory' element={isAdmin ? <CreateSub /> : <>{notFound()}</>} />
-          <Route path='/admin/sub/edits/:id/:slug' element={isAdmin ? <EditSub /> : <>{notFound()}</>} />
-          <Route path='/admin/product' element={isAdmin ? <CreateProduct /> : <>{notFound()}</>} />
-          <Route path='/admin/product/edits/:slug' element={isAdmin ? <EditProduct /> : <>{notFound()}</>} />
-          <Route path='/admin/catatgory/:slug' element={isAdmin ? <ProductsByCatagory /> : <>{notFound()}</>} />
-          <Route path='/admin/sub/:slug' element={isAdmin ? <ProductsBySub /> : <>{notFound()}</>} />
+          <Route path='/admin/catagory/edits/:slug' element={isAdmin ? <EditCatagory /> : <>{notAllowed()}</>} />
+          <Route path='/admin/subcatagory' element={isAdmin ? <CreateSub /> : <>{notAllowed()}</>} />
+          <Route path='/admin/sub/edits/:id/:slug' element={isAdmin ? <EditSub /> : <>{notAllowed()}</>} />
+          <Route path='/admin/product' element={isAdmin ? <CreateProduct /> : <>{notAllowed()}</>} />
+          <Route path='/admin/product/edits/:slug' element={isAdmin ? <EditProduct /> : <>{notAllowed()}</>} />
+          <Route path='/admin/catatgory/:slug' element={isLogged ? <ProductsByCatagory /> : <>{notAllowed()}</>} />
+          <Route path='/admin/sub/:slug' element={isLogged ? <ProductsBySub /> : <>{notAllowed()}</>} />
 
           {/* user Routes */}
           <Route path='/user/dashboard' element={isLogged ? <UserDashboard /> : <>{notFound()}</>} />
