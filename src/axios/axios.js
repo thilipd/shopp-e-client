@@ -11,7 +11,7 @@ const instance = axios.create({
     timeout: 10000,
 
     headers: {
-
+        'Access-Control-Allow-Origin': 'https://shopp-e-server.herokuapp.com/',
         'X-Requested-With': 'XMLHttpRequest',
         'Content-Type': 'application/json'
     }
