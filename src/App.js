@@ -109,18 +109,18 @@ function App() {
           <Route path='/user/forget' element={isLogged ? <Forget /> : <>{notFound()}</>} />
           <Route path='/user/reset/:token' element={isLogged ? <Reset /> : <>{notFound()}</>} />
           <Route path='/profile' element={isLogged ? <Profile /> : <>{notFound()}</>} />
-          <Route path='/editUser/:id' element={isAdmin ? <Editusers /> : <>{notFound()}</>} />
+          <Route path='/editUser/:id' element={isAdmin ? <Editusers /> : <>{notAllowed()}</>} />
 
           {/* Admin Routes */}
-          <Route path='/admin/dashboard' element={isAdmin ? <AdminDashboard /> : <>{notFound()}</>} />
-          <Route path='/admin/catagory' element={isAdmin ? <CreateCatagory /> : <>{notFound()}</>} />
+          <Route path='/admin/dashboard' element={isAdmin ? <AdminDashboard /> : <>{notAllowed()}</>} />
+          <Route path='/admin/catagory' element={isAdmin ? <CreateCatagory /> : <>{notAllowed()}</>} />
           <Route path='/admin/catagory/edits/:slug' element={isAdmin ? <EditCatagory /> : <>{notAllowed()}</>} />
           <Route path='/admin/subcatagory' element={isAdmin ? <CreateSub /> : <>{notAllowed()}</>} />
           <Route path='/admin/sub/edits/:id/:slug' element={isAdmin ? <EditSub /> : <>{notAllowed()}</>} />
           <Route path='/admin/product' element={isAdmin ? <CreateProduct /> : <>{notAllowed()}</>} />
           <Route path='/admin/product/edits/:slug' element={isAdmin ? <EditProduct /> : <>{notAllowed()}</>} />
-          <Route path='/admin/catatgory/:slug' element={isLogged ? <ProductsByCatagory /> : <>{notAllowed()}</>} />
-          <Route path='/admin/sub/:slug' element={isLogged ? <ProductsBySub /> : <>{notAllowed()}</>} />
+          <Route path='/admin/catatgory/:slug' element={<ProductsByCatagory />} />
+          <Route path='/admin/sub/:slug' element={<ProductsBySub />} />
 
           {/* user Routes */}
           <Route path='/user/dashboard' element={isLogged ? <UserDashboard /> : <>{notFound()}</>} />
