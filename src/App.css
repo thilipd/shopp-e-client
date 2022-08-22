@@ -585,3 +585,7 @@ table tr td .tableCount{
   justify-content: center;
   gap:5px
 }
+
+h6{
+  color: #000
+}

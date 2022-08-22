@@ -131,12 +131,12 @@ const Login = () => {
                     </div>
 
                     <div>
-                        <h6>For admin settings  use 'email - admin@example.com' and 'password - 7chakra</h6>
+                        <h6 >For admin settings  use 'email - admin@example.com' and 'password - 7chakra</h6>
                     </div>
 
                 </Paper>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 
