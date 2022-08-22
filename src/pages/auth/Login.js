@@ -88,9 +88,9 @@ const Login = () => {
                         display: 'flex',
                         alignItems: 'left',
                         justifyContent: 'center',
-                        width: 500,
-                        height: 500,
-                        padding: 10,
+                        width: 600,
+                        height: 600,
+                        padding: 20,
                         backgroundColor: 'none !important',
                         borderRadius: 10,
                         color: '#555'
@@ -129,6 +129,7 @@ const Login = () => {
                     <div className="forgetPassword">
                         <Link to="/user/forget">Forget Password</Link>
                     </div>
+                    <br /><br />
 
                     <div>
                         <h6 >For admin settings  use 'email - admin@example.com' and 'password - 7chakra</h6>
