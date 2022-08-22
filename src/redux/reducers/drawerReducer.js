@@ -5,7 +5,7 @@ let intialState = false
 
 const drawerReducer = (state = intialState, action) => {
     switch (action.type) {
-        case ACTIONS.ADD_TO_CART:
+        case ACTIONS.SET_VISIBLE:
             return action.payload;
 
         default:

@@ -14,7 +14,6 @@ import Reset from './pages/auth/Reset';
 import { useDispatch, useSelector } from 'react-redux'
 import Profile from './pages/profile/Profile';
 import { fetchUser, dispatchUser, dispatchLogin } from './redux/actions/authActions';
-import { dispatchCart } from './redux/actions/cartAction';
 import Editusers from './pages/profile/Editusers';
 import AdminDashboard from './pages/dashboard/AdminDashboard';
 import UserDashboard from './pages/dashboard/UserDashboard';
@@ -27,7 +26,9 @@ import EditProduct from './pages/admin/product/EditProduct';
 import Product from './pages/user/Product';
 import ProductsByCatagory from './pages/admin/catagory/ProductsByCatagory';
 import ProductsBySub from './pages/admin/sub/ProductsBySub';
+import SideDrawer from './components/drawer/Drawer';
 import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
 
 function App() {
 
@@ -81,11 +82,12 @@ function App() {
       <BrowserRouter>
         <Header />
         <ToastContainer />
+        <SideDrawer />
         <Routes>
 
           <Route path='/' element={<Home />} />
           <Route path='/cart' element={<Cart />} />
-
+          <Route path='/checkout' element={<Checkout />} />
 
           {/* Auth Routes */}
           <Route path='/login' element={isLogged ? <>{notFound()}</> : <Login />} />
@@ -110,7 +112,6 @@ function App() {
           {/* user Routes */}
           <Route path='/user/dashboard' element={isLogged ? <UserDashboard /> : <>{notFound()}</>} />
           <Route path='/product/:slug' element={<Product />} />
-
 
 
         </Routes>

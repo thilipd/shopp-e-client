@@ -29,7 +29,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
 
         e.preventDefault();
-        console.log(user)
+
 
         try {
             const response = await axios.post('/user/login', { ...user });
@@ -60,12 +60,8 @@ const Login = () => {
 
         } catch (error) {
 
-            console.log(error.response)
-
             if (error.response) return toast.error(error.response.data.msg);
-
             return toast.error(error.message)
-
 
         }
 

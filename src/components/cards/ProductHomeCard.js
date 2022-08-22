@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import _ from 'lodash';
 import { Tooltip } from '@mui/material';
 import { dispatchCart } from '../../redux/actions/cartAction';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const dummy = [
@@ -31,6 +31,10 @@ const ProductHomeCard = ({ product, cart, setCart }) => {
     const navigate = useNavigate();
 
 
+
+
+
+
     const handleCart = () => {
 
         setCart([...cart, {
@@ -38,7 +42,7 @@ const ProductHomeCard = ({ product, cart, setCart }) => {
             count: 1
         }]);
         setTooltip('Added')
-
+        dispatch({ type: 'SET_VISIBLE', payload: true })
 
     }
 
@@ -48,6 +52,7 @@ const ProductHomeCard = ({ product, cart, setCart }) => {
 
 
         dispatch(dispatchCart(unique))
+
 
     }, [cart])
 

@@ -575,7 +575,7 @@ input[type="file"] {
 }
 
 .vl {
-  border-left: .5px solid rgb(220, 220, 220);
+  border-left: .5px solid #dcdcdc00;
   height: 100vh;
 }
 

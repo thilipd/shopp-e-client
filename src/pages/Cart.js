@@ -1,16 +1,17 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import DoneIcon from '@mui/icons-material/Done';
+// import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-
+import { userCart } from '../functions/checkout';
 import IconButton from '@mui/material/IconButton';
 
 import { dispatchCart } from '../redux/actions/cartAction';
+import { Button } from '@mui/material';
 
-
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
 
@@ -21,13 +22,14 @@ const Cart = () => {
     const cart = useSelector(state => state.cart);
     const user = useSelector(state => state.auth.user);
 
+    const navigate = useNavigate();
+
     const dispatch = useDispatch();
     const getTotal = () => {
 
         let total = 0;
-        cart.map((c) => {
+        cart.forEach((c) => {
             total = total + (c.price * c.count)
-
         });
 
         return total
@@ -42,7 +44,7 @@ const Cart = () => {
             cart = JSON.parse(localStorage.getItem('cart'))
         }
 
-        cart.map((product, i) => {
+        cart.forEach((product, i) => {
             if (product._id === e.target.id) {
                 cart[i].colors = e.target.value;
             }
@@ -62,7 +64,7 @@ const Cart = () => {
         if (localStorage.getItem('cart')) {
             cart = JSON.parse(localStorage.getItem('cart'))
         }
-        cart.map((product, i) => {
+        cart.forEach((product, i) => {
             if (product._id === id) {
                 cart[i].count += 1;
             }
@@ -80,7 +82,7 @@ const Cart = () => {
         if (localStorage.getItem('cart')) {
             cart = JSON.parse(localStorage.getItem('cart'))
         }
-        cart.map((product, i) => {
+        cart.forEach((product, i) => {
             if (product._id === id) {
                 if (cart[i].count !== 1) {
                     cart[i].count -= 1;
@@ -110,7 +112,7 @@ const Cart = () => {
         if (localStorage.getItem('cart')) {
             cart = JSON.parse(localStorage.getItem('cart'))
         }
-        cart.map((product, i) => {
+        cart.forEach((product, i) => {
 
 
 
@@ -125,6 +127,10 @@ const Cart = () => {
         })
         localStorage.setItem('cart', JSON.stringify(cart));
         dispatch(dispatchCart(cart))
+    }
+
+    const handleCheckout = () => {
+        navigate('/checkout');
     }
 
 
@@ -269,6 +275,11 @@ const Cart = () => {
 
                                         </tbody>
                                     </table>
+
+                                    <div className='d-flex align-items-center justify-content-center mt-4'>
+
+                                        <Button color={'primary'} variant={'contained'} onClick={() => handleCheckout}>Check out</Button>
+                                    </div>
                                 </>
                         }
 
