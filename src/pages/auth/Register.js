@@ -59,6 +59,7 @@ const Register = () => {
 
             } catch (error) {
                 toast.error(error.response.data.msg)
+                //hi
             }
 
 
